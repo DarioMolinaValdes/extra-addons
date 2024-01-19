@@ -3,15 +3,15 @@
     'name': "ModuloDario",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Este es el resumen en el cual tenemos que escribir algo para rellenar este apartado
+        """,
 
     'description': """
-        Long description of module's purpose
+        Este es el modulo de Dario para hacer la actividad
     """,
 
-    'author': "My Company",
-    'website': "https://www.yourcompany.com",
+    'author': "Dario Molina Valdés",
+    'website': "https://www.ieshlanz.es",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/16.0/odoo/addons/base/data/ir_module_category_data.xml
