@@ -1,18 +1,12 @@
-# -*- coding: utf-8 -*-
+from odoo import models, fields
 
-# from odoo import models, fields, api
+class GreenHarvestService(models.Model):
+    _name = 'greenharvest.service'
+    _description = 'Servicio'
+    _rec_name = 'name'
 
-
-# class green_harvest(models.Model):
-#     _name = 'green_harvest.green_harvest'
-#     _description = 'green_harvest.green_harvest'
-
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         for record in self:
-#             record.value2 = float(record.value) / 100
+    name = fields.Char('Nombre', required=True, help='Nombre del servicio')
+    description = fields.Text('Descripción', help='Descripción del servicio')
+    category = fields.Many2one('greenharvest.service.category', string='Categoría', help='Categoría del servicio')
+    price = fields.Float('Precio', digits=(10, 2), help='Precio del servicio')
+    duration = fields.Float('Duración', help='Duración del servicio en horas')
