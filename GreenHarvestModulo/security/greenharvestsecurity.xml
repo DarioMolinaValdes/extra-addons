@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!--Grupo para jefes del videoclub -->
+    <record id="Encargado" model="res.groups">
+        <field name="name">Encargado</field>
+    </record>
+    <!--Grupo
+    para becarios del videoclub -->
+    <record id="Gerente" model="res.groups">
+        <field name="name">Gerente</field>
+    </record>
+</odoo>

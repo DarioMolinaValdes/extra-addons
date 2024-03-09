@@ -1,0 +1,77 @@
+<odoo>
+  <data>
+    <!-- List view definition -->
+    <record model="ir.ui.view" id="greenharvest_service_tree_view">
+      <field name="name">greenharvest.service.tree.view</field>
+      <field name="model">greenharvest.service</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name" />
+          <field name="price" />
+          <field name="duration" />
+        </tree>
+      </field>
+    </record>
+
+    <!-- Form view definition -->
+    <record model="ir.ui.view" id="greenharvest_service_form_view">
+      <field name="name">greenharvest.service.form.view</field>
+      <field name="model">greenharvest.service</field>
+      <field name="arch" type="xml">
+        <form string="Servicio">
+          <group string="DATOS DEL SERVICIO">
+            <field name="name" />
+            <field name="description" />
+            <field name="category" />
+            <field name="price" />
+            <field name="duration" />
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <!-- Action opening views on models -->
+    <record model="ir.actions.act_window" id="greenharvest_service_action">
+      <field name="name">Servicios</field>
+      <field name="res_model">greenharvest.service</field>
+      <field name="view_mode">tree,form,kanban</field>
+      <field name="help" type="html">
+        <h1>GREENHARVEST SERVICE</h1>
+        <p>LISTA DE SERVICIOS VACÍA</p>
+      </field>
+    </record>
+
+    <!-- Top menu item -->
+    <menuitem name="GREENHARVEST SERVICE" id="greenharvest_service_menu_root" />
+
+    <!-- Submenu items -->
+    <menuitem name="Gestión de Servicios" id="greenharvest_service_management" parent="greenharvest_service_menu_root" />
+    <menuitem name="Servicios" id="greenharvest_service_submenu" parent="greenharvest_service_management" action="greenharvest_service_action" />
+
+    <!-- Kanban view definition -->
+    <record model="ir.ui.view" id="greenharvest_service_kanban_view">
+      <field name="name">greenharvest.service.kanban.view</field>
+      <field name="model">greenharvest.service</field>
+      <field name="arch" type="xml">
+        <kanban>
+          <templates>
+            <t t-name="kanban-box">
+              <div class="oe_kanban_content">
+                <div class="oe_kanban_image">
+                  <field name="image" widget="image" options='{"zoom": true}' />
+                </div>
+                <div class="oe_kanban_details">
+                  <strong>
+                    <field name="name" />
+                  </strong>
+                </div>
+              </div>
+            </t>
+          </templates>
+          <field name="name" />
+        </kanban>
+      </field>
+    </record>
+
+  </data>
+</odoo>

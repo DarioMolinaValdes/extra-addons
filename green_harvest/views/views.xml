@@ -1,0 +1,60 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+<!--
+    <record model="ir.ui.view" id="green_harvest.list">
+      <field name="name">GreenHarvest list</field>
+      <field name="model">green_harvest.green_harvest</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record>
+-->
+
+    <!-- actions opening views on models -->
+<!--
+    <record model="ir.actions.act_window" id="green_harvest.action_window">
+      <field name="name">GreenHarvest window</field>
+      <field name="res_model">green_harvest.green_harvest</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+-->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="green_harvest.action_server">
+      <field name="name">GreenHarvest server</field>
+      <field name="model_id" ref="model_green_harvest_green_harvest"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="GreenHarvest" id="green_harvest.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="green_harvest.menu_1" parent="green_harvest.menu_root"/>
+    <menuitem name="Menu 2" id="green_harvest.menu_2" parent="green_harvest.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="green_harvest.menu_1_list" parent="green_harvest.menu_1"
+              action="green_harvest.action_window"/>
+    <menuitem name="Server to list" id="green_harvest" parent="green_harvest.menu_2"
+              action="green_harvest.action_server"/>
+-->
+  </data>
+</odoo>

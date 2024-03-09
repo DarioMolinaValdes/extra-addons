@@ -1,0 +1,200 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+    <record model="ir.ui.view" id="videoclubdario.peli_arbol">
+      <field name="name">videoclubdario.peli_arbol</field>
+      <field name="model">videoclubdario.peli</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="titulo" />
+          <field name="director" />
+          <field name="clasificacion" />
+          <field name="presupuesto" />
+          <field name="fechaestreno" />
+          <field name="categoria" />
+          <field name="imagen" widget="image" />
+        </tree>
+      </field>
+
+    </record>
+
+    <record model="ir.ui.view" id="videoclubdario.peli_formulario">
+      <field name="name">videoclubdario.peli_formulario</field>
+      <field name="model">videoclubdario.peli</field>
+      <field name="arch" type="xml">
+        <form string="peli">
+          <group string="DATOS DE PELI">
+            <field name="titulo" />
+            <field name="director" />
+            <field name="categoria" />
+            <field name="clasificacion" />
+            <field name="presupuesto" />
+            <field name="fechaestreno" />
+            <field name="imagen" widget="image" />
+            <field name="subvencionado" />
+            <field name="invertido" />
+            <field name="millonario" />
+            <field name="compania" />
+          </group>
+        </form>
+      </field>
+      
+    </record>
+    <!-- actions opening views on models -->
+    <record model="ir.actions.act_window" id="videoclubdario.peli_ventana">
+      <field name="name">Peliculas</field>
+      <field name="res_model">videoclubdario.peli</field>
+      <!--modelo
+      asociado-->
+      <field name="view_mode">tree,form,kanban</field>
+      <!--tipos
+      de vistas-->
+      <field name="help" type="html">
+        <!-- ayuda si no hay campos -->
+        <h1> VIDEOCLUB </h1>
+        <p> LISTA DE PELI VACÍA </p>
+      </field>
+    </record>   
+
+    <!-- Top menu item -->
+    <menuitem name="VIDEOCLUB" id="videoclubdario.menu_root" />
+    <!-- menu categories -->
+    <menuitem name="Gestión Peliculas" id="videoclubdario.gestion_peli"
+      parent="videoclubdario.menu_root" />
+    <menuitem name="Peliculas" id="videoclubdario.menu_peli" parent="videoclubdario.gestion_peli"
+      action="videoclubdario.peli_ventana" />
+      <menuitem name="Gestión compañías" id="videoclubdario.gestion_companias"
+      parent="videoclubdario.menu_root" />
+    <menuitem name="Compañías" id="videoclubdario.menu_companias"
+      parent="videoclubdario.gestion_companias" action="videoclubdario.companias_ventana" />
+
+
+      <record model="ir.ui.view" id="videoclubdario.companias_arbol">
+          <field name="name">videoclubdario.companias_arbol</field>
+          <field name="model">res.partner</field>
+          <field name="arch" type="xml">
+          <tree>
+            <field name="name"/>
+            <field name="premiada"/>
+          </tree>
+          </field>
+        </record>
+        <record model="ir.actions.act_window.view"
+          id="videoclubdario.companias_ventana_view_arbol" >
+          <field name="sequence" eval="1"/>
+          <field name="view_mode">tree</field>
+          <field name="view_id" ref="videoclubdario.companias_arbol"/>
+          <field name="act_window_id"
+          ref="videoclubdario.companias_ventana"/>
+        </record>
+
+        <record model="ir.ui.view" id="videoclubdario.companias_formulario">
+          <field name="name">videoclub_sge.companias_formulario</field>
+          <field name="model">res.partner</field>
+          <field name="inherit_id" ref="base.view_partner_form"></field>
+          <field name="mode">primary</field>
+          <field name="arch" type="xml">
+            <xpath expr="//sheet/notebook/page[@name='internal_notes']" position="after">
+                <page name="videoclub" string="Videoclub">
+                  <group>
+                    <group>
+                      <field name="premiada"/>
+                    </group>
+                  </group>
+                </page>
+              </xpath>
+          </field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="videoclubdario.companias_ventana_view_formulario" >
+          <field name="sequence" eval="2"></field>
+          <field name="view_mode">form</field>
+          <field name="view_id" ref="videoclubdario.companias_formulario"></field>
+          <field name="act_window_id" ref="videoclubdario.companias_ventana"></field>
+          </record>
+          <record model="ir.actions.act_window" id="videoclubdario.companias_ventana" >
+            <field name="name">Compañías Cinematográficas</field>
+            <field name="res_model">res.partner</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('is_cine','=',True)]</field><!--lista de filtros-->
+            <field name="context">{'default_is_cine':True}</field><!--debe ser JSON-->
+          </record>
+
+          <!-- CATEGORIAS -->
+    <!-- Arbol -->
+    <record model="ir.ui.view" id="videoclubdario.categorias_arbol">
+      <field name="name">videoclub_categorias.categorias_arbol</field>
+      <field name="model">videoclub.categorias</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="nombre" />
+          <field name="descripcion" />
+        </tree>
+      </field>
+    </record>
+
+    <!-- Formulario -->
+    <record model="ir.ui.view" id="videoclubdario.categorias_formulario">
+      <field name="name">videoclub_categorias.categorias_formulario</field>
+      <field name="model">videoclub.categorias</field>
+      <field name="arch" type="xml">
+        <form string="pelis">
+          <group string="DATOS DE CATEGORIAS">
+            <field name="nombre" />
+            <field name="descripcion" />
+          </group>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="videoclubdario.categorias_ventana">
+      <field name="name">Categorías</field>
+      <field name="res_model">videoclub.categorias</field>
+      <field name="view_mode">tree,form</field>
+      <field name="help" type="html">
+        <h1>CATEGORÍAS</h1>
+        <p>LISTA DE CATEGORÍAS VACÍA</p>
+      </field>
+    </record>
+    
+    <menuitem name="Categorías" id="videoclubdario.menu_categorias"
+      parent="videoclubdario.gestion_peli" action="videoclubdario.categorias_ventana" />
+
+      <record model="ir.ui.view" id="videoclubdario_kanban_view">
+        <field name="name">videoclubdario.peli.kanban.view</field>
+        <field name="model">videoclubdario.peli</field>
+        <field name="arch" type="xml">
+          <kanban>
+            <templates>
+              <t t-name="kanban-box">
+                <div class="oe_kanban_content">
+                  <div class="oe_kanban_image">
+                    <field name="imagen" widget="image" options='{"zoom": true}' />
+                  </div>
+                  <div class="oe_kanban_details">
+                    <strong>
+                      <field name="titulo" />
+                    </strong>
+                    <div>
+                      <field name="director" />
+                    </div>
+                    <div>
+                      <field name="clasificacion" />
+                    </div>
+                    <div>
+                      <field name="presupuesto" />
+                    </div>
+                  </div>
+                </div>
+              </t>
+            </templates>
+            <field name="titulo" />
+            <field name="director" />
+            <field name="clasificacion" />
+            <field name="presupuesto" />
+          </kanban>
+        </field>
+      </record>
+
+  </data>
+</odoo>
